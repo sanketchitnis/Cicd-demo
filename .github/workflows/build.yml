@@ -1,4 +1,3 @@
-
 name: Build and Deploy Factorial App
 
 on:
@@ -14,11 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Debug: List files
+        run: ls -la
+
       - name: Set up Docker
         run: |
           docker build -t factorial-app .
           docker images
-      
+
       - name: Push Docker Image (Optional)
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
